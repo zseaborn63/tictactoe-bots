@@ -25,8 +25,3 @@ else:
         dude_x = dude[0]
         dude_y = dude[1]
     print("{} {}".format(dude_x, dude_y))
-    #else:
-        #dude = random_choice()
-        #dude_x = dude[0]
-        #dude_y = dude[1]
-        #print("{} {}".format(dude_x, dude_y))
