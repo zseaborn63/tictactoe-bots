@@ -26,7 +26,7 @@ class RandomBot:
         choice_y = random.randint(0, 2)
         return choice_x, choice_y
 
-    def space_chooser(self):
+    def random_space_chooser(self):
         dude = self.random_choice()
         x = dude[0]
         y = dude[1]
@@ -35,5 +35,5 @@ class RandomBot:
             dude = self.random_choice()
         print("{} {}".format(*dude))
 
-d = ZachBot(team, first_row, second_row, third_row)
-d.space_chooser()
+d = RandomBot(team, first_row, second_row, third_row)
+d.random_space_chooser()
