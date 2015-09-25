@@ -1,9 +1,5 @@
 import random
 
-team = input()
-first_row = input()
-second_row = input()
-third_row = input()
 
 class RandomBot:
 
@@ -30,10 +26,8 @@ class RandomBot:
         dude = self.random_choice()
         x = dude[0]
         y = dude[1]
-        board = self.create_board(self.row_one, self.row_two, self.row_three)
-        while board[x][y] in 'XO':
+        while self.board[x][y] in 'XO':
             dude = self.random_choice()
-        print("{} {}".format(*dude))
-
-d = RandomBot(team, first_row, second_row, third_row)
-d.random_space_chooser()
+            x = dude[0]
+            y = dude[1]
+        print("{} {}".format(x, y))

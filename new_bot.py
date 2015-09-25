@@ -2,15 +2,8 @@ import random
 from zach_bot_two import RandomBot
 
 
-team = input()
-first_row = input()
-second_row = input()
-third_row = input()
 
-def LogicBot(RandomBot):
-
-    def __init__(self, team, row1, row2, row3):
-        pass
+class LogicBot(RandomBot):
 
     def get_col(self):
         b = self.create_board()
@@ -22,9 +15,17 @@ def LogicBot(RandomBot):
 
     def get_diag(self):
         d = self.create_board()
-        retrun [[d[0][0], d[1][1], d[2][2]], [d[0][2], d[1][1], d[2][0]]]
+        return [[d[0][0], d[1][1], d[2][2]], [d[0][2], d[1][1], d[2][0]]]
 
-    
-
-l = LogicBot()
-l.random_space_chooser(team, first_row, second_row, third_row)
+    def get_occurance(self):
+        row = self.create_board()
+        col = self.get_col()
+        diag = self.get_diag()
+        occur_matrix = []
+        row_occur = [x.count(self.me) for x in row]
+        occur_matrix.append(row_occur)
+        col_occur = [y.count(self.me) for y in col]
+        occur_matrix.append(col_occur)
+        diag_occur = [z.count(self.me) for z in diag]
+        occur_matrix.append(diag_occur)
+        return occur_matrix
