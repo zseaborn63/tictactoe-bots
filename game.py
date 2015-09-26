@@ -7,4 +7,4 @@ second_row = input()
 third_row = input()
 
 d = SpiritBot(team, first_row, second_row, third_row)
-d.random_space_chooser()
+d.make_move()
