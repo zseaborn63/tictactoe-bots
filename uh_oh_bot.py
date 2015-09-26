@@ -1,3 +1,6 @@
+# Make a function where if two opposite corners are chosen, it chooses an open corner
+
+
 import random
 from zach_bot_two import RandomBot
 
@@ -30,6 +33,23 @@ class SpiritBot(RandomBot):
                 return (idx, open_index[0])
             if row_value == -2:
                 return (idx, open_index[0])
+
+    def row_win_and_block(self):
+        row_win = self.win_or_block_possible(self.board, self.me, self.you)
+        if row_win:
+            print("{} {}".format(row_win[0], row_win[1]))
+        else:
+            return False
+
+    def column_win_and_block(self):
+        col_win = win_or_block_possible(self.columns, self.me, self.you)
+        if col_win:
+            print("{} {}".format(col_win[0], col_win[1]))
+        else:
+            return False
+
+    def diagonal_win_and_block(self):
+        pass
 
     def make_move(self):
         x = self.is_board_open(self.board)
