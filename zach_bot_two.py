@@ -12,10 +12,24 @@ class RandomBot:
         self.row_one = row1
         self.row_two = row2
         self.row_three = row3
-        self.board = self.create_board(self.row_one, self.row_two, self.row_three)
+        self.board = self.create_board()
+        self.columns = self.get_col()
+        self.diagonals = self.get_diag()
 
-    def create_board(self, row1, row2, row3):
-        return [row1, row2, row3]
+    def create_board(self):
+        return [self.row_one, self.row_two, self.row_three]
+
+    def get_col(self):
+        b = self.create_board()
+        col_matrix = []
+        for idx in range(len(b)):
+            col = [row[idx] for row in b]
+            col_matrix.append(col)
+        return col_matrix
+
+    def get_diag(self):
+        d = self.create_board()
+        return [[d[0][0], d[1][1], d[2][2]], [d[0][2], d[1][1], d[2][0]]]
 
     def random_choice(self):
         choice_x = random.randint(0, 2)
