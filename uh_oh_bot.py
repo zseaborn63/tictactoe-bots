@@ -1,7 +1,3 @@
-# Make a function where if two opposite corners are chosen, it chooses an open corner
-# Need a function for first move of O team.  Possibly a random corner, or random edge.
-
-
 import random
 from zach_bot_two import RandomBot
 
@@ -27,6 +23,25 @@ class SpiritBot(RandomBot):
                     counter += 1
         if counter == 8:
             return True
+        else:
+            return False
+
+    def bottled_chaos(self):
+        edges = self.edges
+        board = self.board
+        for x in edges:
+            if (x[0], x[1]) in board == "_":
+                return (True, x[0], x[1])
+            else:
+                return False
+
+
+    def are_opposite_corners_taken(self):
+        corners = self.corners
+        if corners[0] and corners[3] == self.you:
+            return (True, 2, 0)
+        elif corners[1] and corners[2] == self.you:
+            return (True, 0, 0)
         else:
             return False
 
@@ -81,6 +96,8 @@ class SpiritBot(RandomBot):
     def make_move(self):
         first_move = self.is_board_open(self.board)
         second_move = self.is_second_move(self.board)
+        corner_move = self.are_opposite_corners_taken()
+        b = self.bottled_chaos()
         y = self.row_win_and_block()
         z = self.column_win_and_block()
         x = self.diagonal_win_and_block()
@@ -97,5 +114,10 @@ class SpiritBot(RandomBot):
             print("{} {}".format(z[1], z[2]))
         elif x:
             print("{} {}".format(x[1], x[2]))
+        elif corner_move:
+            if (corner_move[1], corner_move[2]) == "_":
+                print("{} {}".format(corner_move[1], corner_move[2]))
+        elif b:
+            print("{} {}".format(b[1], b[2]))
         else:
             self.random_space_chooser()

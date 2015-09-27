@@ -16,6 +16,7 @@ class RandomBot:
         self.columns = self.get_col()
         self.diagonals = self.get_diag()
         self.corners = [(0, 0), (0, 2), (2, 0), (2, 2)]
+        self.edges = [(0, 1), (1, 0), (1, 2), (2, 1)]
 
     def create_board(self):
         return [self.row_one, self.row_two, self.row_three]
