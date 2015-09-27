@@ -102,12 +102,12 @@ class SpiritBot(RandomBot):
         z = self.column_win_and_block()
         x = self.diagonal_win_and_block()
         if first_move == True:
-            print("0 2")
+            print("2 0")
         elif second_move == True:
-            if self.board[0][1] != self.you:
-                print("0 1")
+            if self.board[0][2] != self.you:
+                print("0 2")
             else:
-                print("2 1")
+                print("2 2")
         elif y:
             print("{} {}".format(y[1], y[2]))
         elif z:
