@@ -38,14 +38,14 @@ class SpiritBot(RandomBot):
     def row_win_and_block(self):
         row_win = self.win_or_block_possible(self.board, self.me, self.you)
         if row_win:
-            return (row_win[0], row_win[1])
+            return (True, row_win[0], row_win[1])
         else:
             return False
 
     def column_win_and_block(self):
         col_win = self.win_or_block_possible(self.columns, self.me, self.you)
         if col_win:
-            return (col_win[1], col_win[0])
+            return (True, col_win[1], col_win[0])
         else:
             return False
 
@@ -58,9 +58,9 @@ class SpiritBot(RandomBot):
         z = self.column_win_and_block()
         if x == True:
             print("0 2")
-        if x:
-            print("{} {}".format(x[0], x[1]))
-        if y:
-            print("{} {}".format(y[0], y[1]))
+        elif y:
+            print("{} {}".format(y[1], y[2]))
+        elif z:
+            print("{} {}".format(z[1], z[2]))
         else:
             self.random_space_chooser()
