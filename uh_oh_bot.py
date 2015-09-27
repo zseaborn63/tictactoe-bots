@@ -19,6 +19,17 @@ class SpiritBot(RandomBot):
         else:
             return False
 
+    def is_second_move(self, grid):
+        counter = 0
+        for row in grid:
+            for square in row:
+                if square == "_":
+                    counter += 1
+        if counter == 8:
+            return True
+        else:
+            return False
+
     def win_or_block_possible(self, grid, me, you):
         for idx, row in enumerate(grid):
             row_value = 0
@@ -32,7 +43,7 @@ class SpiritBot(RandomBot):
                     open_index.append(i)
             if row_value == 2:
                 return (idx, open_index[0])
-            if row_value == -2:
+            elif row_value == -2:
                 return (idx, open_index[0])
 
     def row_win_and_block(self):
@@ -68,12 +79,18 @@ class SpiritBot(RandomBot):
             return False
 
     def make_move(self):
-        b = self.is_board_open(self.board)
+        first_move = self.is_board_open(self.board)
+        second_move = self.is_second_move(self.board)
         y = self.row_win_and_block()
         z = self.column_win_and_block()
         x = self.diagonal_win_and_block()
-        if b == True:
+        if first_move == True:
             print("0 2")
+        elif second_move == True:
+            if self.board[0][1] != self.you:
+                print("0 1")
+            else:
+                print("2 1")
         elif y:
             print("{} {}".format(y[1], y[2]))
         elif z:
