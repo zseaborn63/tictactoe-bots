@@ -50,17 +50,35 @@ class SpiritBot(RandomBot):
             return False
 
     def diagonal_win_and_block(self):
-        pass
+        diag_win = self.win_or_block_possible(self.diagonals, self.me, self.you)
+        if diag_win:
+            if diag_win == (0, 2):
+                return (True, 2, 2)
+            if diag_win == (0, 0):
+                return (True, 0, 0)
+            if diag_win == (1, 0):
+                return (True, 0, 2)
+            if diag_win == (1, 2):
+                return (True, 2, 0)
+            if diag_win == (1, 1):
+                return (True, 1, 1)
+            if diag_win == (0, 1):
+                return (True, 1, 1)
+        else:
+            return False
 
     def make_move(self):
-        x = self.is_board_open(self.board)
+        b = self.is_board_open(self.board)
         y = self.row_win_and_block()
         z = self.column_win_and_block()
-        if x == True:
+        x = self.diagonal_win_and_block()
+        if b == True:
             print("0 2")
         elif y:
             print("{} {}".format(y[1], y[2]))
         elif z:
             print("{} {}".format(z[1], z[2]))
+        elif x:
+            print("{} {}".format(x[1], x[2]))
         else:
             self.random_space_chooser()
