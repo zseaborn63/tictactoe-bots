@@ -1,4 +1,5 @@
 # Make a function where if two opposite corners are chosen, it chooses an open corner
+# Need a function for first move of O team.  Possibly a random corner, or random edge.
 
 
 import random
@@ -18,7 +19,7 @@ class SpiritBot(RandomBot):
         else:
             return False
 
-    def win_or_block_possible(self, grid, me, you)
+    def win_or_block_possible(self, grid, me, you):
         for idx, row in enumerate(grid):
             row_value = 0
             open_index = []
@@ -37,14 +38,14 @@ class SpiritBot(RandomBot):
     def row_win_and_block(self):
         row_win = self.win_or_block_possible(self.board, self.me, self.you)
         if row_win:
-            print("{} {}".format(row_win[0], row_win[1]))
+            return (row_win[0], row_win[1])
         else:
             return False
 
     def column_win_and_block(self):
-        col_win = win_or_block_possible(self.columns, self.me, self.you)
+        col_win = self.win_or_block_possible(self.columns, self.me, self.you)
         if col_win:
-            print("{} {}".format(col_win[0], col_win[1]))
+            return (col_win[1], col_win[0])
         else:
             return False
 
@@ -53,7 +54,13 @@ class SpiritBot(RandomBot):
 
     def make_move(self):
         x = self.is_board_open(self.board)
+        y = self.row_win_and_block()
+        z = self.column_win_and_block()
         if x == True:
             print("0 2")
+        if x:
+            print("{} {}".format(x[0], x[1]))
+        if y:
+            print("{} {}".format(y[0], y[1]))
         else:
             self.random_space_chooser()
